@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+group = "com.semuruga.gradleplugin"
+version = "1.0"
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'org.testng:testng:6.+'
+    testCompile 'org.codehaus.groovy:groovy:2.4.+'
+}
+
+
+test {
+    useTestNG()
+}
+
+publishing {
+    publications {
+        publishSemurugaPlugin(MavenPublication) {
+            artifactId "sample-semuruga-plugin"
+            from components.java
+        }
+    }
+}
+
